@@ -17,6 +17,7 @@
 package com.example.android.architecture.blueprints.todoapp.tasks
 
 import android.os.Bundle
+import android.app.Application
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -30,6 +31,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.android.architecture.blueprints.todoapp.EventObserver
 import com.example.android.architecture.blueprints.todoapp.R
+import com.example.android.architecture.blueprints.todoapp.TodoApplication
 import com.example.android.architecture.blueprints.todoapp.data.Task
 import com.example.android.architecture.blueprints.todoapp.data.source.DefaultTasksRepository
 import com.example.android.architecture.blueprints.todoapp.databinding.TasksFragBinding
@@ -44,9 +46,8 @@ import timber.log.Timber
  */
 class TasksFragment : Fragment() {
 
-    private val viewModel by viewModels<TasksViewModel>(){
-        TasksViewModel.TasksViewModelFactory(DefaultTasksRepository
-                .getRepository(requireActivity().application))
+    private val viewModel by viewModels<TasksViewModel> {
+        TasksViewModel.TasksViewModelFactory((requireContext().applicationContext as TodoApplication).taskRepository)
     }
 
     private val args: TasksFragmentArgs by navArgs()
