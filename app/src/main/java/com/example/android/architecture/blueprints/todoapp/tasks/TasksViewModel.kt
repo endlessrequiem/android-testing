@@ -32,6 +32,7 @@ import kotlinx.coroutines.launch
 /**
  * ViewModel for the task list screen.
  */
+@Suppress("UNCHECKED_CAST")
 class TasksViewModel(private val tasksRepository : TasksRepository) : ViewModel() {
 
 
@@ -228,7 +229,7 @@ class TasksViewModel(private val tasksRepository : TasksRepository) : ViewModel(
     fun refresh() {
         _forceUpdate.value = true
     }
-    @Suppress("UNCHECKED_CAST")
+
     class TasksViewModelFactory (
             private val tasksRepository: TasksRepository
     ) : ViewModelProvider.NewInstanceFactory() {
