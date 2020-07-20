@@ -31,7 +31,7 @@ class FakeTestRepository : TasksRepository {
         return Error(Exception("Could not find task"))
     }
 
-    override suspend fun getTasks(forceUpdate: Boolean): Result<List <Task>> {
+    override suspend fun getTasks(forceUpdate: Boolean): Result<List<Task>> {
         if (shouldReturnError) {
             return Error(Exception("Test exception"))
         }
